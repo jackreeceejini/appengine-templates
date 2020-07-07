@@ -4,23 +4,7 @@ import jinja2
 import webapp2
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir))
-
-
-hidden_html = """
-<input type="hidden" name="food" value="%s">
-"""
-
-item_html = "<li>%s</li>"
-
-shopping_list_html = """
-<br>
-<br>
-<h2>Shopping List</h2>
-<ul>
-%s
-</ul>
-"""
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
 
 class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
