@@ -1,7 +1,10 @@
 import os
 
+import jinja2
 import webapp2
 
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir))
 form_html = """
 <form>
 <h2> Add a Food</h2>
@@ -27,7 +30,7 @@ shopping_list_html = """
 
 class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
-        self.response.write(*a, **kw)
+        self.response.out.write(*a, **kw)
 
 class MainPage(Handler):
     def get(self):
